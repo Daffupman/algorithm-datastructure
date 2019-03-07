@@ -1,4 +1,4 @@
-package Ch01_Array;
+package Ch01_linear;
 
 /**
  * @program: data-structure
@@ -201,7 +201,7 @@ public class Array<E> {
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
-		res.append(String.format("Ch01_Array.Array: size = %d, capacity = %d\n", size, data.length));
+		res.append(String.format("Ch01_linear.Array: size = %d, capacity = %d\n", size, data.length));
 		res.append('[');
 		for (int i = 0; i < size; i++) {
 			res.append(data[i]);
