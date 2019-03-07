@@ -43,6 +43,16 @@ public class Array<E> {
 		return data.length;
 	}
 
+	//直接获取第一个元素
+	public E getFirst() {
+		return get(0);
+	}
+
+	//直接获取最后一个元素
+	public E getLast() {
+		return get(size - 1);
+	}
+
 	/**
 	 * 返回数组是否为空
 	 * @return
