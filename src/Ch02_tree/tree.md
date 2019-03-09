@@ -101,3 +101,18 @@
         1. 有序链表：元素是有序的，基于搜索树实现
         2. 无序列表：元素是无序的，基于哈希表实现
         3. 多重列表：元素可重复（可重复的BST）
+        
+4. 映射(Map)
+    - 存储数据对(键-值)，根据键Key，寻找值（Value）
+    - 接口
+        ```java
+        class Map<K,V> {
+          void add(K k,V v);
+          V remove(K k);
+          boolean contains(K k);
+          V get(K k);
+          void set(K k, V v);
+          int getSize();
+          boolean isEmpty();
+        }
+        ```
