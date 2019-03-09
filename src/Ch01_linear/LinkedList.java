@@ -166,6 +166,24 @@ public class LinkedList<E> {
 		return remove(size - 1);
 	}
 
+	//从链表中删除指定元素
+	public void removeElement(E e) {
+		Node prev = dummyHead;
+		//将prev指针定位到目标元素之前的一个位置
+		while(prev.next != null) {
+			if(prev.next.e.equals(e)) {
+				break;
+			}
+			prev = prev.next;
+		}
+		if(prev.next != null) {
+			Node delNode = prev.next;
+			prev.next = delNode.next;
+			delNode.next = null;
+		}
+
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder res = new StringBuilder();
