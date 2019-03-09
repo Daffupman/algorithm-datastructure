@@ -73,3 +73,16 @@
         - 维护size的BST
         - 维护depth的BST
         - 支持重复的BST（树中节点重复，使用count变量）
+3. 集合(Set)：  
+    - 集合中不可存放重复元素。
+    - 接口：
+        ```java
+        class Set<E>{	      
+	     	  void add(E e);
+            void remove(E e);
+            boolean contains(E e);
+            int getSize();
+            boolean isEmpty();
+        }
+        ```
+    - 使用BST和Linked list作为底层实现的性能差异
