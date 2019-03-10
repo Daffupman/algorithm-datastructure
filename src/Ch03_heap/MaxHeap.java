@@ -24,6 +24,9 @@ public class MaxHeap<E extends Comparable<E>> {
 
 	public MaxHeap(E[] arr){
 		data = new Array<>(arr);
+		for (int i = parent(arr.length - 1); i >= 0 ; i--) {
+			siftDown(i);
+		}
 	}
 
 	//返回堆中的元素
@@ -105,36 +108,41 @@ public class MaxHeap<E extends Comparable<E>> {
 		}
 	}
 
-	public static void main(String[] args) {
-		int n = 1000000;
-
-		MaxHeap<Integer> maxHeap = new MaxHeap<>();
-		Random random = new Random();
-		for (int i = 0; i < n; i++) {
-			//存入随机数
-			maxHeap.add(random.nextInt(20));
-		}
-		int[] arr = new int[n];
-		//将堆中的数全部取出，放入arr中，arr必定是有序的
-		for (int i = 0; i < n; i++) {
-			arr[i] = maxHeap.extractMax();
-		}
-		//验证arr的有序性
-		for (int i = 1; i < n; i++) {
-			if (arr[i-1] < arr[i]) {
-				throw new IllegalArgumentException("Error");
-			}
-		}
-		System.out.println("Test MaxHeap complete");
-
-	}
-
 	//取出堆中最大值，替换成e,并返回最大值
 	public E replace(E e){
 		E ret = findMax();
 		data.set(0, e);
 		siftDown(0);
 		return ret;
+	}
+
+	public static void main(String[] args) {
+//		int n = 1000000;
+
+//		MaxHeap<Integer> maxHeap = new MaxHeap<>();
+//		Random random = new Random();
+//		for (int i = 0; i < n; i++) {
+//			//存入随机数
+//			maxHeap.add(random.nextInt(20));
+//		}
+//		int[] arr = new int[n];
+//		//将堆中的数全部取出，放入arr中，arr必定是有序的
+//		for (int i = 0; i < n; i++) {
+//			arr[i] = maxHeap.extractMax();
+//		}
+
+//		//验证arr的有序性
+//		for (int i = 1; i < n; i++) {
+//			if (arr[i-1] < arr[i]) {
+//				throw new IllegalArgumentException("Error");
+//			}
+//		}
+
+		Integer[] arr = {11,24,3,14,5};
+		MaxHeap<Integer> maxHeap = new MaxHeap<>(arr);
+
+		System.out.println("Test MaxHeap complete");
+
 	}
 
 }
