@@ -223,6 +223,16 @@ public class Array<E> {
 		return res.toString();
 	}
 
+	//交换索引为i，j的元素
+	public void swap(int i, int j){
+		if(i < 0 || i >= size || j < 0 || j>= size){
+			throw new IllegalArgumentException("Index is illegal.");
+		}
+		E t = data[i];
+		data[i] = data[j];
+		data[j] = t;
+	}
+
 
 	//todo 传入一个静态数组
 
