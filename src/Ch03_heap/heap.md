@@ -14,15 +14,37 @@
         父节点的索引为：`parent(i) = （i-1）/2`;  
         左孩子的索引为：`left child(i) = 2*i + 1`;  
         右孩子的索引为：`right child(i) = 2*i + 2`;
-        - 添加元素：  
+        - 添加元素：O(logn)  
         元素上浮(sift up)：
             ```java_holder_method_tree
             while(index > 0 && data.get(index).compareTo(parent(index)>0)){
                 swap(index,parent(index));
             }
             ```
-        - 取出元素：
+        - 取出元素：O(logn)  
         元素下沉(sift down)：
             ```java_holder_method_tree
-            
+            while(leftChild(k) < data.getSize()){
+                //j存放着左右孩子中较大值的下标，初始值为左孩子的值
+                j = leftChild(k);
+                //只有存在右孩子且右孩子的值大于左孩子的值的时候，j才会+1，也就是变为右孩子的下标
+                if(data.get(j+1) != null && data.get(j+1).compareTo(data.get(j)) > 0){
+                    j++;
+                }
+                //k和j再作比较,根的值最大则跳出循环
+                if(data.get(j).compareTo(data.get(k)) < 0){
+                    break;
+                }
+                swap(k,j);
+                //根下标下移
+                k = j;
+            }
             ```
+            
+        - 替换replace
+            1. 先extractMax，再add，两次O(logn)
+            2. 直接将堆顶元素替换，在sift down，一次O(logn)
+            
+        - heapify:将任意数组整理成堆的形状
+            1. 将n个元素逐个插入到一个空堆中，O(logn)
+            2. heapify，O(n)

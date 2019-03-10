@@ -22,6 +22,10 @@ public class MaxHeap<E extends Comparable<E>> {
 		data = new Array<>();
 	}
 
+	public MaxHeap(E[] arr){
+		data = new Array<>(arr);
+	}
+
 	//返回堆中的元素
 	public int getSize(){
 		return data.getSize();
@@ -123,6 +127,14 @@ public class MaxHeap<E extends Comparable<E>> {
 		}
 		System.out.println("Test MaxHeap complete");
 
+	}
+
+	//取出堆中最大值，替换成e,并返回最大值
+	public E replace(E e){
+		E ret = findMax();
+		data.set(0, e);
+		siftDown(0);
+		return ret;
 	}
 
 }

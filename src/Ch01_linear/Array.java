@@ -28,6 +28,18 @@ public class Array<E> {
 	}
 
 	/**
+	 * 将传入的数组转化成Array
+	 * @param arr
+	 */
+	public Array(E[] arr){
+		data = (E[]) new Object[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			data[i] = arr[i];
+		}
+		size = arr.length;
+	}
+
+	/**
 	 * 获取数组内的元素个数
 	 * @return
 	 */
