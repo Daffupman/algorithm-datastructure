@@ -129,11 +129,15 @@ public class LinkedListMap<K,V> implements Map<K,V> {
 		if (FileOperation.readFile(filename, words1)) {
 			System.out.println("Total words: " + words1.size());
 
-			LinkedListSet<String> set1 = new LinkedListSet<>();
+			LinkedListMap<String , Integer> map = new LinkedListMap<>();
 			for (String word : words1) {
-				set1.add(word);
+				if(map.contains(word)) {
+					map.set(word, map.getSize() + 1);
+				} else {
+					map.add(word, 1);
+				}
 			}
-			System.out.println("Total different words: " + set1.getSize());
+			System.out.println("Total different words: " + map.getSize());
 		}
 	}
 }

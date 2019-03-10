@@ -19,7 +19,7 @@
     - 包含
     - 遍历(广度/深度):
         1. 先序遍历(递归):自然且常用  
-            ```java
+            ```js
             function traverse(node) {
                if(node == null) {
                    return;
@@ -34,7 +34,7 @@
             
             ```
         2. 中序遍历(递归):遍历的结果是顺序的  
-            ```java
+            ```js
             function traverse(node) {
                if(node == null) {
                    return;
@@ -45,7 +45,7 @@
             }
             ```
         3. 后序遍历(递归)
-            ```java
+            ```js
             function traverse(node) {
                if(node == null) {
                    return;
@@ -77,12 +77,12 @@
     - 集合中不可存放重复元素。
     - 接口：
         ```java
-        class Set<E>{	      
-	     	  void add(E e);
-            void remove(E e);
-            boolean contains(E e);
-            int getSize();
-            boolean isEmpty();
+        class Set<E> {
+          void add(E e);
+          void remove(E e);
+          boolean contains(E e);
+          int getSize();
+          boolean isEmpty();
         }
         ```
     - 使用BST和Linked list作为底层实现的性能差异  
@@ -116,3 +116,22 @@
           boolean isEmpty();
         }
         ```
+    - 时间复杂度分析
+        LinkedListMap
+        - 增add：O(n)
+        - 删remove：O(n)
+        - 改set：O(n)
+        - 查get：O(n)
+        - 查contains：O(n)
+        
+        BSTMap
+        - 增add：平均O(logn)，最坏O(n)
+        - 删remove：平均O(logn)，最坏O(n)
+        - 改set：平均O(logn)，最坏O(n)
+        - 查get：平均O(logn)，最坏O(n)
+        - 查contains：平均O(logn)，最坏O(n)
+        
+    - 映射的分类
+        - 有序映射：映射中的键具有顺序性，基于搜索树的实现
+        - 无序映射：映射中的键没有顺序性，基于哈希表的实现
+        - 多重映射：多重映射中的键可以重复
