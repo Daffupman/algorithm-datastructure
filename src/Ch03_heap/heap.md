@@ -17,8 +17,9 @@
         - 添加元素：O(logn)  
         元素上浮(sift up)：
             ```java_holder_method_tree
-            while(index > 0 && data.get(index).compareTo(parent(index)>0)){
-                swap(index,parent(index));
+            while(k > 0 && data.get(k).compareTo(parent(k)>0)){
+                swap(index,parent(k));
+                k = parent(k);
             }
             ```
         - 取出元素：O(logn)  
