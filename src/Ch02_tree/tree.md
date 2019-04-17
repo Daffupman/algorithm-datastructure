@@ -241,7 +241,7 @@
         ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417113425.png)  
         并查集中的每个节点：孩子节点指向父亲节点，
         节点2是并查集的根节点，根节点指向自己。将两个元素合并的过程，就是先找到这两个元素的根节点，将其中的一个根节点的指向修改成另一个根节点  
-        Quick Union下的数据表示
+        Quick Union下的数据表示  
         ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417113805.png)
         ```java
         public class UnionFind2 {
