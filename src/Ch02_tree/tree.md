@@ -154,8 +154,9 @@
         
  7. 并查集（UnionFind）
     - 与之前大多数的树形结构不同的是，并查集中的父亲节点都是由孩子节点指向的。而这样的结构适合解决连接问题（Connectivity Problem）。
-    - 连接问题
-    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417103436.png?token=AlacKIhY1inC6KXb2cFKLzsJ1lEPuX3vks5ctpD5wA%3D%3D)
+    - 连接问题  
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417103436.png?token=AlacKIhY1inC6KXb2cFKLzsJ1lEPuX3vks5ctpD5wA%3D%3D)  
+    
     问：图中任意的两点是否连接？  
     像这种判断网络中节点间的连接状态，并查集是一个高效快速的解决这类问题的数据结构。
     - 对于一组数据，并查集主要支持两个动作
@@ -169,7 +170,7 @@
         void unionElements(int p, int q);
     }
     ```
-    并差集的基本数据表示
+    并差集的基本数据表示  
     ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417105707.png)
     
     - 并查集的实现
@@ -237,7 +238,7 @@
         
         - 2）Quick Union  
         将每个元素看做是一个节点,但是实际上还是使用数组实现
-        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417113425.png)
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417113425.png)  
         并查集中的每个节点：孩子节点指向父亲节点，
         节点2是并查集的根节点，根节点指向自己。将两个元素合并的过程，就是先找到这两个元素的根节点，将其中的一个根节点的指向修改成另一个根节点  
         Quick Union下的数据表示
@@ -406,8 +407,8 @@
       
           }
         ```
-        - 5）路径压缩
-        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417152733.png)
+        - 5）路径压缩  
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190417152733.png)  
         对于find(4)操作，上面三种结构的结构是一样的，但在效率上存在差异。路径压缩的原理就是尽量让高的树变成矮的树。
         ```java
           public class UnionFind5 {
