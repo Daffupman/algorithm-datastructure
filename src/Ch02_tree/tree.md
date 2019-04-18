@@ -575,3 +575,84 @@
          
     - AVL树的删除
         在AVL树中删除一个节点时，可能会破坏树的平衡性。需要在删除节点后，对树做平衡。这和在BST树中删除的节点的操作类似，只不过在AVL中删除节点后不会立刻return掉，而是使用retNode变量暂存。然后对retNode分情况（LL,RR,LR,RL）做平衡。
+        
+ 9. 红黑树（RBTree）
+    - 一种与红黑树等价的树——2-3树  
+    满足二分搜索树的基本性质（但不是二叉树）。节点可以存放一个元素（二节点）或两个元素（三节点）。  
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418160150.png)  
+    2-3树是一棵"绝对平衡"的树，即对于任意一个节点，其左右子树的高度相等。  
+    `2-3树的添加过程：`     
+    在往2-3树中添加元素的时候，为保持2-3树的绝对平衡，是不会直接添加到左右孩子都为空路的节点上去的。而是先把元素暂存在当前的根节点里，此时，当前的根节点会变成二节点或三节点。  
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418161412.png)   
+    如果是三节点，接着会将它分裂成一棵树。  
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418161314.png)  
+    - 红黑树中添加节点的辅助函数  
+        - 颜色翻转
+            ```
+            private void flipColors(Node node) {
+                node.color = RED;
+                node.left.color = BLACK;
+                node.right.color = BLACK;
+            }
+            ```
+        - 左旋转
+            ```
+            private void leftRotate(Node node) {
+                Node x = node.right;
+                
+                node.right = x.left;
+                x.left = node;
+                
+                //x替换原来的父亲节点node，颜色也要替换
+                x.color = node.color;
+                node.color = RED;
+            }
+            ```
+    - 2-3树和红黑树的等价类比
+        所有的红色节点的都是左倾斜的，以2-3树的角度看，红色节点都是和它的父节点合在一起的。左倾红黑树。
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418190911.png)
+    - 在红黑树中添加节点  
+        1) 红黑树为空  
+            直接添加进树中，根节点的颜色改为黑色。
+        2) 添加到左右子树都为空的节点上  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418163430.png)  
+            添加的元素比原来的小，直接添加上去  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418163509.png)  
+            添加的元素比原来的大，需要进行左旋，以保持红黑树的性质  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418163839.png)  
+        3) 添加到三节点上，添加的元素最大  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418164024.png)  
+            直接添加，然后节点颜色翻转  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418165035.png)  
+        4) 添加到三节点上，添加的元素最小  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418165137.png)  
+            添加后需要右旋转  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418165357.png)  
+            接着需要改变节点颜色  
+            ```
+            x.color = node.color;
+            node.color = RED
+            ```
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418165849.png)  
+        5) 添加到三节点上，添加的元素介于两者之间  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418194732.png)  
+            先基于37节点左旋  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418194830.png)  
+            对42节点再右旋  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418195022.png)  
+            最后颜色翻转  
+            ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418195104.png)
+    - 算法中红黑树的性质
+        - 每个节点要么是红色的，要么是黑色的；
+        - 根节点是黑色的；
+        - 每一个叶子节点（最后一个空节点）是黑色的，空的红黑树是黑色的；
+        - 如果一个节点是黑色的，那么它的孩子节点都是黑色的；
+        - 从任意一个节点到叶子节点，经过的黑色节点数量都是一样的。  
+        红黑树是保持"黑平衡"的二叉树，而非严格上的平衡二叉树。  
+        最大高度2logn，O(logn)
+    - 红黑树的三节点中添加新元素的总览  
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190418195353.png)  
+    - 红黑树的性能分析  
+        - 对于完全随机的数据，普通的二分搜索树很好用。但BST的会在极端情况下退化成链表（或者高度不平衡）；  
+        - 对于查询较多的情况，AVL树比较适合
+        - 红黑树牺牲了平衡性（2logn的高度），相较于AVL，红黑树的统计性能（crud的平均性能）更优。
