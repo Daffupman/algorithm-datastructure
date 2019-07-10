@@ -13,6 +13,7 @@
 #maven ignore
 target/
 
+#Java application:binary class output directory
 out/
 
 #eclipse ignore
