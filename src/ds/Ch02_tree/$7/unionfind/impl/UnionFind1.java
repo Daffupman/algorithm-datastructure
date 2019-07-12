@@ -1,11 +1,13 @@
-package ds.Ch02_tree.$7.unionfind;
+package ds.Ch02_tree.$7.unionfind.impl;
+
+import ds.Ch02_tree.$7.unionfind.UF;
 
 /**
  * @description 第一版并查集，数组结构
  * @author Daffupman
  * @date 2019/07/09
  */
-public class UnionFind1 implements UF{
+public class UnionFind1 implements UF {
 
 	private int[] id;		//用于存储下标对应的元素所在的集合id
 

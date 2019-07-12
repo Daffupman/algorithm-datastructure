@@ -1,4 +1,6 @@
-package ds.Ch02_tree.$2.map;
+package ds.Ch02_tree.$2.map.impl;
+
+import ds.Ch02_tree.$2.map.Map;
 
 /**
  * @description 使用链表实现map

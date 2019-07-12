@@ -1,24 +1,26 @@
-package ds.Ch02_tree.$7.unionfind;
+package ds.Ch02_tree.$7.unionfind.impl;
+
+import ds.Ch02_tree.$7.unionfind.UF;
 
 /**
- * @description 第四版并查集，孩子节点指向父节点的结构，数组模拟
- * 				基于rank的优化
+ * @description 第三版并查集，孩子节点指向父节点的结构，数组模拟
+ * 				基于size的优化
  * @author Daffupman
  * @date 2019/07/09
  */
-public class UnionFind4 implements UF{
+public class UnionFind3 implements UF {
 
 	private int[] parent;		//用于存储下标对应的元素所在的集合parent
-	private int[] rank;			//存储对应地，以sz[i]为根的树的高度
+	private int[] sz;			//存储对应地，以sz[i]为根的树的元素个数
 
-	public UnionFind4(int capacity) {
+	public UnionFind3(int capacity) {
 		parent = new int[capacity];
-		rank = new int[capacity];
+		sz = new int[capacity];
 		for (int i = 0; i < parent.length; i++) {
 			//初始化状态：parent数组中的父节点指向都是指向自己
 			parent[i] = i;
 			//sz初始化为1
-			rank[i] = 1;
+			sz[i] = 1;
 		}
 	}
 	
@@ -52,19 +54,17 @@ public class UnionFind4 implements UF{
 		//修改p索引处的父节点指向即可
 		parent[p] = qRoot;
 		
-		if(rank[pRoot] < rank[qRoot]) {
+		if(sz[pRoot] < sz[qRoot]) {
 			parent[pRoot] = qRoot;
-		} else if(rank[pRoot] > rank[qRoot]){
-			parent[qRoot] = pRoot;
+			sz[qRoot] += sz[pRoot];
 		} else {
 			parent[qRoot] = pRoot;
-			rank[pRoot] += 1;
-			
+			sz[pRoot] += sz[qRoot];
 		}
 	}
 	
 	public static void main(String[] args) {
-		UnionFind4 uf = new UnionFind4(10);
+		UnionFind3 uf = new UnionFind3(10);
 		System.out.println(uf.isConnected(1, 3));
 		uf.unionElements(1, 3);
 		System.out.println(uf.isConnected(1, 3));

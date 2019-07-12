@@ -1,11 +1,13 @@
-package ds.Ch02_tree.$7.unionfind;
+package ds.Ch02_tree.$7.unionfind.impl;
+
+import ds.Ch02_tree.$7.unionfind.UF;
 
 /**
  * @description 第二版并查集，孩子节点指向父节点的结构，数组模拟
  * @author Daffupman
  * @date 2019/07/09
  */
-public class UnionFind2 implements UF{
+public class UnionFind2 implements UF {
 
 	private int[] parent;		//用于存储下标对应的元素所在的集合parent
 

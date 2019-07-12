@@ -1,17 +1,19 @@
-package ds.Ch02_tree.$7.unionfind;
+package ds.Ch02_tree.$7.unionfind.impl;
+
+import ds.Ch02_tree.$7.unionfind.UF;
 
 /**
- * @description 第六版并查集，孩子节点指向父节点的结构，数组模拟
- * 				基于rank的优化，添加路径压缩（递归）
+ * @description 第五版并查集，孩子节点指向父节点的结构，数组模拟
+ * 				基于rank的优化，添加路径压缩
  * @author Daffupman
  * @date 2019/07/09
  */
-public class UnionFind6 implements UF{
+public class UnionFind5 implements UF {
 
 	private int[] parent;		//用于存储下标对应的元素所在的集合parent
 	private int[] rank;			//存储对应地，以sz[i]为根的树的高度
 
-	public UnionFind6(int capacity) {
+	public UnionFind5(int capacity) {
 		parent = new int[capacity];
 		rank = new int[capacity];
 		for (int i = 0; i < parent.length; i++) {
@@ -39,11 +41,12 @@ public class UnionFind6 implements UF{
 			throw new IllegalArgumentException("index out of bound!");
 		}
 		
-		//路径压缩,递归
+		//路径压缩
 		if(parent[p] != p) {
-			parent[p] = find(parent[p]);
+			parent[p] = parent[parent[p]];
+			p = parent[p];
 		}
-		return parent[p];
+		return p;
 	}
 	
 	//联接p和q
@@ -68,7 +71,7 @@ public class UnionFind6 implements UF{
 	}
 	
 	public static void main(String[] args) {
-		UnionFind6 uf = new UnionFind6(10);
+		UnionFind5 uf = new UnionFind5(10);
 		System.out.println(uf.isConnected(1, 3));
 		uf.unionElements(1, 3);
 		System.out.println(uf.isConnected(1, 3));

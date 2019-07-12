@@ -1,11 +1,13 @@
-package ds.Ch02_tree.$2.map;
+package ds.Ch02_tree.$2.map.impl;
+
+import ds.Ch02_tree.$2.map.Map;
 
 /**
  * @description 基于BST的map
  * @author Daffupman
  * @date 2019-07-10 08:26
  */
-public class BSTMap<K extends Comparable<K>, V> implements Map<K, V>{
+public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
 	//存储键值对的节点
 	private class Node {
