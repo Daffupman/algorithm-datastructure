@@ -3,7 +3,7 @@ package algo.Ch02_sort.sort_n2;
 import java.util.Arrays;
 
 /**
- * @description
+ * @description 冒泡排序
  * @author Daffupman
  * @date 2019/7/10 18:31
  */

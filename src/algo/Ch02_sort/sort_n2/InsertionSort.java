@@ -3,8 +3,8 @@ package algo.Ch02_sort.sort_n2;
 import java.util.Arrays;
 
 /**
- * @author Daffupman
  * @description 插入排序，当数据规模比较小的时候，使用插入排序。性能会得到一定的提升
+ * @author Daffupman
  * @date 2019/7/10 19:09
  */
 public class InsertionSort {
