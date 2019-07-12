@@ -1,4 +1,4 @@
-package tree;
+package ds.Ch02_tree.$3.set;
 
 /**
  * @description Set集合的接口定义

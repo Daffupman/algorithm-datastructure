@@ -1,4 +1,7 @@
-package tree;
+package ds.Ch02_tree.$3.set.impl;
+
+import ds.Ch02_tree.$1.bst.BST;
+import ds.Ch02_tree.$3.set.Set;
 
 /**
  * @description 使用BST实现set集合
@@ -7,7 +10,7 @@ package tree;
  */
 public class BSTSet<E extends Comparable<E>> implements Set<E> {
 
-	private BST<E> bst; 
+	private BST<E> bst;
 	
 	public BSTSet() {
 		bst = new BST<>();

@@ -1,6 +1,7 @@
-package tree;
+package ds.Ch02_tree.$3.set.impl;
 
-import linear.LinkedList;
+import ds.Ch01_linear.$2.linkedlist.LinkedList;
+import ds.Ch02_tree.$3.set.Set;
 
 /**
  * @description 基于链表的集合
