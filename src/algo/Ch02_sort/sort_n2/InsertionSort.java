@@ -32,12 +32,27 @@ public class InsertionSort {
 			int e = arr[i];
 			//j保存着待插入元素应当插入的位置
 			int j = i;
+
+			//***********bug************
+			//for循环中的if条件判断有误，应该加上else语句，在不符合前面元素大于待插入元素时，break掉，避免j--的操作
+			//或者，将if条件与for循环的条件语句合并：j>0 && e < arr[j-1]
+//			for ( ; j > 0; j--) {
+//				//条件不能写成arr[j] < arr[j-1],因为arr[j]很有可能会被前一个元素覆盖，而不是本来的待插入元素了
+//				if(e < arr[j-1]) {
+//					arr[j] = arr[j-1];
+//				}
+//			}
+			//***********bug************
+
 			for ( ; j > 0; j--) {
 				//条件不能写成arr[j] < arr[j-1],因为arr[j]很有可能会被前一个元素覆盖，而不是本来的待插入元素了
 				if(e < arr[j-1]) {
 					arr[j] = arr[j-1];
+				} else {
+					break;
 				}
 			}
+
 			//j已经是待插入元素应该存在的位置了
 			arr[j] = e;
 		}
@@ -46,7 +61,7 @@ public class InsertionSort {
 
 	public static void main(String[] args) {
 
-		int[] arr = {5,4,3,2,1};
+		int[] arr = {5,7,3,9,2};
 //		new InsertionSort().sort1(arr);
 		new InsertionSort().sort2(arr);
 		System.out.println(Arrays.toString(arr));
