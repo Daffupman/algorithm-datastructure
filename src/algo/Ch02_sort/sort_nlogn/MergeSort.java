@@ -84,23 +84,21 @@ public class MergeSort {
 
 	//在数组arr的[l,r]范围内进行插入排序
 	private static void insertSort(int[] arr, int l, int r) {
-		for (int i = l+1; i < r; i++) {
+		for (int i = l+1; i <= r; i++) {
 			//暂存待插入的元素
 			int e = arr[i];
 			//j的结果是待插入元素应该放入到前面序列的位置
 			int j = i;
-			for ( ; j > 0 ; j--) {
+			for ( ; j > 0 && e < arr[j-1]; j--) {
 				//反向去寻找待插入的索引位置
-				if(e < arr[j-1]) {
-					arr[j] = arr[j-1];
-				}
+				arr[j] = arr[j-1];
 			}
 			arr[j] = e;
 		}
 	}
 
 	public static void main(String[] args) {
-		int[] arr = {9,8,7,6,5,4,3,2,1,0};
+		int[] arr = {5,7,3,9,2};
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
