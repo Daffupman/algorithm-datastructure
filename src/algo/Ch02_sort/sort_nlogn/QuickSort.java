@@ -11,18 +11,8 @@ public class QuickSort {
 
 
 	private static void sort(int[] arr) {
-		double begin = System.nanoTime();
-		quickSort(arr, 0 , arr.length-1);
-		double end = System.nanoTime();
-		double time = (end-begin)/1000000000;
-		System.out.println(time);
-
-		begin = System.nanoTime();
+		//quickSort(arr, 0 , arr.length-1);
 		quickSort3Ways(arr, 0 ,arr.length-1);
-		end = System.nanoTime();
-		time = (end-begin)/1000000000;
-		System.out.println(time);
-
 	}
 
 	private static void quickSort(int[] arr, int l, int r) {
@@ -154,13 +144,13 @@ public class QuickSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = new int[10000000];
-//		int[] arr = {5,2,3,4,1,0};
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) (Math.random()*(arr.length));
-		}
-		double begin = System.nanoTime();
+//		int[] arr = new int[10000000];
+		int[] arr = {5,7,3,9,2};
+//		for (int i = 0; i < arr.length; i++) {
+//			arr[i] = (int) (Math.random()*(arr.length));
+//		}
 		sort(arr);
+		System.out.println(Arrays.toString(arr));
 
 	}
 
