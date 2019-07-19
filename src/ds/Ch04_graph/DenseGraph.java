@@ -7,7 +7,7 @@ import java.util.Vector;
  * @description 稠密图，使用邻接矩阵表示
  * @date 2019/7/18 19:54
  */
-public class DenseGraph {
+public class DenseGraph implements Graph{
 
 	private int n;              //节点数
 	private int m;              //边数
@@ -48,10 +48,21 @@ public class DenseGraph {
 	}
 
 	// 验证图中是否有从v到w的边
-	private boolean hasEdge(int v, int w) {
+	public boolean hasEdge(int v, int w) {
 		assert v >= 0 && v < n;
 		assert w >= 0 && w < n;
 		return g[v][w];
+	}
+
+	// 显示图的信息
+	@Override
+	public void show(){
+
+		for( int i = 0 ; i < n ; i ++ ){
+			for( int j = 0 ; j < n ; j ++ )
+				System.out.print(g[i][j]+"\t");
+			System.out.println();
+		}
 	}
 
 	// 返回图中一个顶点的所有邻边

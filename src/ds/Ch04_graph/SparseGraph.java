@@ -7,7 +7,7 @@ import java.util.Vector;
  * @description 稀疏图，使用邻接表表示
  * @date 2019/7/18 20:06
  */
-public class SparseGraph {
+public class SparseGraph implements Graph{
 
 	private int n;              //节点数
 	private int m;              //边数
@@ -48,7 +48,7 @@ public class SparseGraph {
 		m ++;
 	}
 
-	private boolean hasEdge(int v, int w) {
+	public boolean hasEdge(int v, int w) {
 		assert v >= 0 && v < n;
 		assert w >= 0 && w < n;
 
@@ -58,6 +58,16 @@ public class SparseGraph {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void show() {
+		for( int i = 0 ; i < n ; i ++ ){
+			System.out.print("vertex " + i + ":\t");
+			for( int j = 0 ; j < g[i].size() ; j ++ )
+				System.out.print(g[i].elementAt(j) + "\t");
+			System.out.println();
+		}
 	}
 
 	//返回图中一个顶点的所有邻边，由于java的引用机制，返回一个Vector不会带来额外的开销
