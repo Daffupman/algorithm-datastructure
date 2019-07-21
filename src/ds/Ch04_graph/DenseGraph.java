@@ -14,6 +14,7 @@ public class DenseGraph implements Graph{
 	private boolean directed;   //是否为有向图
 	private boolean[][] g;      //图的具体数据
 
+	//生成n*n的邻接矩阵，并指定是否是有向图
 	public DenseGraph(int n, boolean directed) {
 		assert n > 0;
 		this.n = n;
@@ -60,7 +61,7 @@ public class DenseGraph implements Graph{
 
 		for( int i = 0 ; i < n ; i ++ ){
 			for( int j = 0 ; j < n ; j ++ )
-				System.out.print(g[i][j]+"\t");
+				System.out.print( (g[i][j] ? "1":".") +"\t");
 			System.out.println();
 		}
 	}

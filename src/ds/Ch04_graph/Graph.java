@@ -12,7 +12,6 @@ public interface Graph {
 	void addEdge(int v, int w);
 	boolean hasEdge(int v, int w);
 	void show();
-	public Iterable<Integer> adj(int v);
-
+	Iterable<Integer> adj(int v);
 
 }
