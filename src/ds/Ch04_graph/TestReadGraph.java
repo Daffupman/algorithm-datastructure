@@ -5,7 +5,7 @@ package ds.Ch04_graph;
  * @description 测试
  * @date 2019/7/19 13:25
  */
-public class Test {
+public class TestReadGraph {
 
 	public static void main(String[] args) {
 		// 使用两种图的存储方式读取testG1.txt文件

@@ -32,3 +32,7 @@
 - 遍历邻边  
 ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190718202718.png)
 除了遍历邻接矩阵或邻接表的方式，还可以借助迭代器的思想实现图的遍历
+- 图的遍历
+    - 深度优先遍历（以求图的连通分量为例）
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190720204244.png)
+    - 广度优先遍历
