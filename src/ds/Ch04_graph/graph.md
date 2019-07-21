@@ -32,7 +32,15 @@
 - 遍历邻边  
 ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190718202718.png)
 除了遍历邻接矩阵或邻接表的方式，还可以借助迭代器的思想实现图的遍历
-- 图的遍历
-    - 深度优先遍历（以求图的连通分量为例）
-    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190720204244.png)
+- 图的遍历（无向图）
+    - 深度优先遍历  
+        - 求图的连通分量为例
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190720204244.png)  
+        - 求两点之间的一条路径
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721105154.png)
+        - 复杂度分析：
+            - 稀疏图（邻接表形式）：O(V+E)
+            - 稠密图（邻接矩阵形式）：O(V^2)    
+        - 深度优先遍历算法对有向图依然有效，可以检测有向图中是否有环
     - 广度优先遍历
+        
