@@ -1,4 +1,4 @@
-package ds.Ch04_graph;
+package ds.Ch04_graph.$1.unweighted;
 
 import java.util.Vector;
 
@@ -7,7 +7,7 @@ import java.util.Vector;
  * @description 稀疏图，使用邻接表表示
  * @date 2019/7/18 20:06
  */
-public class SparseGraph implements Graph{
+public class SparseGraph implements Graph {
 
 	private int n;              //节点数
 	private int m;              //边数

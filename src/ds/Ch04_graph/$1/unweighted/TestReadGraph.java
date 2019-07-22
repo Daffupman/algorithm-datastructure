@@ -1,4 +1,4 @@
-package ds.Ch04_graph;
+package ds.Ch04_graph.$1.unweighted;
 
 /**
  * @author Daffupman
@@ -26,7 +26,7 @@ public class TestReadGraph {
 //
 //		// 使用两种图的存储方式读取testG2.txt文件
 //		filename = "testG2.txt";
-//		SparseGraph g3 = new SparseGraph(6, false);
+//		SparseWeightedGraph g3 = new SparseWeightedGraph(6, false);
 //		ReadGraph readGraph3 = new ReadGraph(g3, filename);
 //		System.out.println("test G2 in Sparse Graph:");
 //		g3.show();

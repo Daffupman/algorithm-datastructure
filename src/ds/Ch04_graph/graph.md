@@ -49,3 +49,25 @@
             - 稀疏图（邻接表）：O(V+E)
             - 稠密图（邻接矩阵）：O(V^2)
             
+### 4.带权图（Weighted Graph）
+- 图的边上带有信息
+![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721113138.png)
+- 带权图的表示
+    - 邻接矩阵
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721113312.png)
+    - 邻接表
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721113410.png)  
+    为统一稠密图和稀疏图的，封装Edge类
+    - 最小生成树问题（Minimum Span Tree）
+    ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721151908.png)  
+    在树中找到一条路径，该路径经过所有的点，并且所有边的权值之和是最小的。常用于电缆布线设计，网络设计，电路设计等。前提条件是该图是一个（带权）无向图，并且也是一个连通图。
+        - 切分定理（Cut Property）
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190721152636.png)
+            - 横切边（Crossing Edge）：如果一个边的两个端点，属于`切分（Cut）`不同的两边，这个边称为横切边。
+            - 切分定理：给定任意切分，横切边中权值最小的边必然属于最小生成树。
+        - Lazy Prim算法
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190722194712.png)  
+            - 时间复杂度为：O(ElogE)
+        - Prim算法：Lazy Prim的优化
+        ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190722200517.png)
+            - 时间复杂度：O(ElogV),并不会把非切分的边加入到堆中

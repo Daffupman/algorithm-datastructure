@@ -1,4 +1,4 @@
-package ds.Ch04_graph;
+package ds.Ch04_graph.$1.unweighted;
 
 /**
  * @author Daffupman
