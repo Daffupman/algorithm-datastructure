@@ -58,7 +58,7 @@ public class QuickSort {
 	//也就是与基准元素相同的元素会被分到分界点的两边，比单路快排有着比较好的平衡
 	private static int partition2(int[] arr, int l, int r) {
 		//在[l...r]中随机选取基准点
-		swap(arr, l, (int) (Math.random()*(r-l+1)+l));
+		swap(arr, l, (int) (Math.random()*(r-l+1)) + l);
 		//标注l位置上的元素为基准点
 		int v = arr[l];
 
