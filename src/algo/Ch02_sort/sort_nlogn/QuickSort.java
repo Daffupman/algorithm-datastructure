@@ -11,8 +11,8 @@ public class QuickSort {
 
 
 	private static void sort(int[] arr) {
-		//quickSort(arr, 0 , arr.length-1);
-		quickSort3Ways(arr, 0 ,arr.length-1);
+		quickSort(arr, 0 , arr.length-1);
+//		quickSort3Ways(arr, 0 ,arr.length-1);
 	}
 
 	private static void quickSort(int[] arr, int l, int r) {
@@ -40,12 +40,14 @@ public class QuickSort {
 		//j是大于和小于元素e的分界点，j属于小于e的区域
 		int j = l;
 		//指针i指向待分配的元素
-		for (int i = l+1; i <= r; i++) {
+		int i = l+1;
+		while(i <= r) {
 			if(arr[i] < v) {
 				//若当前元素小于基准元素，将当前元素和分界点j后一位元素交换,同时需要扩大小于基准元素的范围（++j）
-				j ++;
-				swap(arr, j, i);
+				swap(arr, i, ++j);
 			}
+			//不管当前元素是什么，i指针只管前进
+			i ++;
 		}
 		//一轮partition的最后，需要交换基准元素索引和分界点索引j上元素
 		swap(arr, l, j);
@@ -120,6 +122,7 @@ public class QuickSort {
 		}
 		//====================
 		swap(arr, l ,lt);
+		//这里的lt-1的原因是：在上一步的swap之后lt上的元素是等于v的
 		quickSort3Ways(arr, l, lt-1);
 		quickSort3Ways(arr, gt, r);
 	}
