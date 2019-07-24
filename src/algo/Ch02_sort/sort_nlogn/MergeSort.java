@@ -59,7 +59,7 @@ public class MergeSort {
 		int left = l;       //指向偏左数组的第一个元素
 		int right = mid+1;  //指向偏右数组的第一个元素
 
-		//在[l...r]范围选取元素加入到aux中
+		//在[l...r]范围选取元素加入到arr中
 		//在访问数组的时候要始终减去偏移量l
 		for(int i = l; i <= r; i ++) {
 			if(left > mid) {
