@@ -9,10 +9,10 @@ import java.util.Arrays;
  */
 public class IndexMaxHeap<Item extends Comparable> {
 
-	protected Item[] data;      //最大索引堆中的数据
-	protected int[] indexes;    //最大索引堆中的索引
-	protected int count;
-	protected int capacity;
+	private Item[] data;      //最大索引堆中的数据，只管添加元素
+	private int[] indexes;    //最大索引堆中的索引，每个元素对应着data数组中的一个元素（在元素添加的时候就已经绑定好了），需要交换data中的元素位置时，不直接操作data数组而是交换indexes中的元素
+	private int count;        //数组中的元素个数，也是第count个元素存储在data数组索引count处
+	private int capacity;     //数组容量
 
 	//创建可以容纳capacity个元素的空堆，索引0不使用
 	public IndexMaxHeap(int capacity) {
@@ -31,13 +31,14 @@ public class IndexMaxHeap<Item extends Comparable> {
 	}
 
 	//向最大索引堆中索引i处插入新元素item，传入的i对用户而言，是从0开始的
+	//而事实上索引0处是不存储元素的
 	public void insert(int i, Item item) {
 
 		assert count + 1 <= capacity;
 		assert i+1 >= 1 && i+1 <= capacity;
 
 		data[++i] = item;
-		indexes[count++] = i;
+		indexes[++count] = i;
 
 		shiftUp(count);
 
@@ -152,6 +153,16 @@ public class IndexMaxHeap<Item extends Comparable> {
 		}
 
 		return true;
+	}
+
+	// 测试 IndexMaxHeap
+	public static void main(String[] args) {
+
+		int N = 5;
+		IndexMaxHeap<Integer> indexMaxHeap = new IndexMaxHeap<>(N);
+		for( int i = 0 ; i < N ; i ++ )
+			indexMaxHeap.insert( i , (int)(Math.random()*N) );
+		assert indexMaxHeap.testIndexes();
 	}
 
 }
