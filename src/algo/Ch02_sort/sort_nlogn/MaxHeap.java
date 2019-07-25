@@ -3,11 +3,12 @@ package algo.Ch02_sort.sort_nlogn;
 // 在堆的有关操作中，需要比较堆中元素的大小，所以Item需要extends Comparable
 public class MaxHeap<Item extends Comparable> {
 
-	private Item[] data;
-	private int count;
-	private int capacity;
+	private Item[] data;    //存放具体元素
+	private int count;      //元素个数
+	private int capacity;   //数组容量
 
 	// 构造函数, 构造一个空堆, 可容纳capacity个元素
+	// 其中索引0处不存储元素
 	public MaxHeap(int capacity){
 		data = (Item[])new Comparable[capacity+1];
 		count = 0;
@@ -39,6 +40,7 @@ public class MaxHeap<Item extends Comparable> {
 		Item ret = data[1];
 
 		swap( 1 , count );
+		//必须在shiftDown之前将数组容量减少1
 		count --;
 		shiftDown(1);
 
@@ -59,9 +61,10 @@ public class MaxHeap<Item extends Comparable> {
 		data[j] = t;
 	}
 
-	//********************
-	//* 最大堆核心辅助函数
-	//********************
+	//*************************************************************
+	//*                   【最大堆核心辅助函数】                      *
+	//* 上浮：子节点与父节点比较，只要子节点大，就与父节点交换，否则停止操作  *
+	//**************************************************************
 	private void shiftUp(int k){
 
 		while( k > 1 && data[k/2].compareTo(data[k]) < 0 ){
@@ -70,6 +73,10 @@ public class MaxHeap<Item extends Comparable> {
 		}
 	}
 
+	//*****************************************************
+	//*              【最大堆核心辅助函数】                   *
+	//* 下沉：父节点与子节点比较，只要父节点小就下沉，否则停止操作  *
+	//******************************************************
 	private void shiftDown(int k){
 
 		while( 2*k <= count ){
@@ -87,7 +94,7 @@ public class MaxHeap<Item extends Comparable> {
 	// 测试 MaxHeap
 	public static void main(String[] args) {
 
-		MaxHeap<Integer> maxHeap = new MaxHeap<Integer>(100);
+		MaxHeap<Integer> maxHeap = new MaxHeap<>(100);
 		int N = 100; // 堆中元素个数
 		int M = 100; // 堆中元素取值范围[0, M)
 		for( int i = 0 ; i < N ; i ++ )
