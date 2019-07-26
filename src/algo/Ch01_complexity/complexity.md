@@ -42,7 +42,7 @@
     ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190726183850.png)  
     其中log<sub>a</sub>b是一个常数。所以，所有的对数级别的复杂度都统一看成是O(logn)的。
 - 一些特殊的情况
-    - 双重循环却是O(nlogn)的算法：
+    - 双重循环却是O(nlogn)的算法：  
     ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190726184553.png)
     - 单次循环却是O(sqrt(n))的算法：  
     ![](https://raw.githubusercontent.com/Daffupman/markdown-img/master/20190726184741.png)
