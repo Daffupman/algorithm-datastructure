@@ -16,3 +16,16 @@ id_350
 209 Word Pattern  
 205 Isomorphic Strings  
 451 Sort Characters By Frequency
+
+### 使用查找表
+id_1 Two Sum  
+id_454 4Sum II  
+id_447 Number of Boomerangs  
+49 Group Anagrams  
+15 3Sum  
+18 4Sum
+16 3Sum Closest  
+149 Max Points on a Line
+
+### 查找表+滑动窗口
+id_219 Contains Duplicate II  
