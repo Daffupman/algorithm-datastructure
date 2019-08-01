@@ -8,7 +8,7 @@ import java.util.Set;
  * @description leetcode:349 Intersection of Two Arrays
  * @date 2019/7/28 12:32
  */
-public class Example01 {
+public class Example01_id349 {
 
 	//时间复杂度：O(n)/O(nlogn),取决于map和set底层实现
 	//空间复杂度：O(n)

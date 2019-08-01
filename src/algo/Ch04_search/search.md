@@ -18,14 +18,16 @@ id_350
 451 Sort Characters By Frequency
 
 ### 使用查找表
-id_1 Two Sum  
-id_454 4Sum II  
-id_447 Number of Boomerangs  
-49 Group Anagrams  
-15 3Sum  
-18 4Sum
-16 3Sum Closest  
-149 Max Points on a Line
+将单个元素或多个元素组合起来放入查找表  
+- id_1 Two Sum     
+    15 3Sum  
+    18 4Sum  
+    16 3Sum Closest  
+- id_454 4Sum II  
+    49 Group Anagrams  
+    149 Max Points on a Line
+- id_447 Number of Boomerangs 
 
 ### 查找表+滑动窗口
 id_219 Contains Duplicate II  
+id_217 Contains Duplicate  

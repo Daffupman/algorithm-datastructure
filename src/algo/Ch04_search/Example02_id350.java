@@ -8,7 +8,7 @@ import java.util.Map;
  * @description leetcode:350 Intersection of Twp Arrays II
  * @date 2019/7/28 12:57
  */
-public class Example02 {
+public class Example02_id350 {
 
 	//时间复杂度：O(n)/O(nlogn),取决于map和set底层实现
 	//空间复杂度：O(n)
