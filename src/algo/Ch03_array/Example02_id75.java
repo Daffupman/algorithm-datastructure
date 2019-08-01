@@ -5,7 +5,7 @@ package algo.Ch03_array;
  * @description leetcode:75 Sort Colors
  * @date 2019/7/27 19:35
  */
-public class Example02 {
+public class Example02_id75 {
 
 	//时间复杂度：O(n)
 	//空间复杂度：O(k) ，k为频次数组的大小，在这里为O(1)
@@ -61,7 +61,7 @@ public class Example02 {
 
 	public static void main(String[] args) {
 		int[] nums = {2,0,2,1,1,0};
-		new Example02().sortColors2(nums);
+		new Example02_id75().sortColors2(nums);
 		for (int num : nums) {
 			System.out.print(num+" ");
 		}

@@ -5,7 +5,7 @@ package algo.Ch03_array;
  * @description leetcode:209 Minimum Size Subarray Sum, 滑动窗口
  * @date 2019/7/28 11:24
  */
-public class Example03 {
+public class Example03_id209 {
 
 	public int minSubArrayLen(int s, int[] nums) {
 		//[l...r]为滑动窗口

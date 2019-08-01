@@ -5,7 +5,7 @@ package algo.Ch03_array;
  * @description leetcode：283 Move Zeros
  * @date 2019/7/27 18:30
  */
-public class Example01 {
+public class Example01_id283 {
 
 	//时间复杂度：O(n)
 	//空间复杂度：O(n)
@@ -52,7 +52,7 @@ public class Example01 {
 	public static void main(String[] args) {
 		int[] nums = {0,1,0,3,12};
 //		int[] nums = {1,2,0,3,0};
-		new Example01().moveZeros3(nums);
+		new Example01_id283().moveZeros3(nums);
 		for (int num : nums) {
 			System.out.print(num+" ");
 		}

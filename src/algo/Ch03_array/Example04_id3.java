@@ -6,7 +6,7 @@ package algo.Ch03_array;
  *              滑动窗口
  * @date 2019/7/28 11:48
  */
-public class Example04 {
+public class Example04_id3 {
 
 	public int lengthOfLongestSubstring(String s) {
 		//申请一个256大小的数组记录字符是否重复（ASCII码），
