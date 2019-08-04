@@ -56,14 +56,13 @@ public class Example02_id144 {
 		Stack<Command> stack = new Stack<>();
 		stack.push(new Command("go", root));
 		while( !stack.isEmpty() ) {
-			Command cmd = stack.peek();
-			stack.pop();
+			Command cmd = stack.pop();
 
 			if( "print".equals( cmd.s ) ) {
 				res.add( cmd.node.val );
 			} else {
 				assert "go".equals(cmd.s);
-				//核心过程,改动Cgo安顿print的入栈顺序即可
+				//核心过程,改动go和print的入栈顺序即可完成先、中、后序遍历
 				if( cmd.node.right != null ) {
 					stack.push( new Command("go", cmd.node.right) );
 				}
