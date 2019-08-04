@@ -14,8 +14,11 @@ public class Example01_id20 {
 		Stack<Character> stack = new Stack<>();
 
 		for ( int i = 0; i < s.length(); i ++ ) {
-			if( s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{' ) {
-				stack.push(s.charAt(i));
+
+			char ch = s.charAt(i);
+
+			if( ch == '(' || ch == '[' || ch == '{' ) {
+				stack.push(ch);
 			} else {
 
 				if( stack.size() == 0 ) {
@@ -24,15 +27,18 @@ public class Example01_id20 {
 
 				char c = stack.pop();
 
-				char match;
+				char match = '0';
 
-				if( s.charAt(i) == ')' ) {
-					match = '(';
-				} else if( s.charAt(i) == ']' ) {
-					match = '[';
-				} else {
-					assert s.charAt(i) == '}';
-					match = '{';
+				switch (ch) {
+					case ')':
+						match = '(';
+						break;
+					case ']':
+						match = '[';
+						break;
+					case '}':
+						match = '{';
+						break;
 				}
 
 				if( c != match ) {
