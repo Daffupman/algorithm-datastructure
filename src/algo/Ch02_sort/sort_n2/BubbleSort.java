@@ -13,10 +13,13 @@ public class BubbleSort {
 
 		int n = arr.length;
 
-		//外层循环控制循环次数
+		// 外层循环控制循环次数
 		for (int i = 1; i < n; i++) {
 
-			//内层循环控制比较范围
+			// 内层循环控制比较范围, 比较的是相邻的两个元素
+			// 每轮的交换都是从0开始比较
+			// 然后将最大值放在数组的末尾，i ++,
+			// 范围（n-i）自然地就缩小
 			for (int j = 0; j < n-i; j++) {
 				if(arr[j] > arr[j+1]) {
 					int temp = arr[j];
@@ -27,34 +30,35 @@ public class BubbleSort {
 		}
 	}
 
+	// 优化思路：
+	// 每次循环的时候，都是从0比较到n-i的位置
+	// 如果在某轮的比较中，没有发生两个元素的交换
+	// 那么也就意味着，范围[0...n-i]内的元素的是有序的
+	// 这样的话，之后的循环都是没有意义的，我们应该跳过。
+	//
+	// 这样的优化思路，对于有序序列或某序列的前段部分是有序的的情况是比较有效的
 	private void sort2(int[] arr) {
 		int n = arr.length;
+		for(int i = 1; i < n; i ++) {
+			//在每轮循环比较之前，初始化有序标志位order为true
+			boolean ordered = true;
 
-		//外层循环控制循环次数
-		for (int i = 1; i < n; i++) {
-
-			//设立有序标志位
-			boolean sorted  = true;
-
-			//内层循环控制比较范围
-			for (int j = 0; j < n-i; j++) {
+			for(int j = 0; j < n-i; j ++) {
 				if(arr[j] > arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j+1];
 					arr[j+1] = temp;
 
-					//发生了排序动作，说明数组的后面不是有序的
-					//sorted标志位置为false
-					sorted = false;
+					//发生了元素交换，[0...n-i]并不是有序的
+					ordered = false;
 				}
 			}
-
-			//在每轮交换结束时检查sorted标识符
-			if(sorted) {
-				//当前面的序列已经有序，就不需要排序了，跳出循环
+			//在每轮循环比较结束后，检查ordered标志位
+			if(ordered) {
+				// 标志位ordered为true，也就是[0...n-i]范围内的元素是有序的
+				// 终止外层循环，冒泡排序结束
 				break;
 			}
-
 		}
 	}
 
