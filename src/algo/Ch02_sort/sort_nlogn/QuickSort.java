@@ -140,10 +140,13 @@ public class QuickSort {
 	}
 
 	private static void swap(int[] arr, int i, int j) {
-		if(i == j) return;
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
+		// 此方法加上判断会更好
+		// 当交换的方法是加减法或异或法时，必须要加上！！！
+		if(i != j) {
+			arr[i] = arr[i] ^ arr[j];
+			arr[j] = arr[i] ^ arr[j];
+			arr[i] = arr[i] ^ arr[j];
+		}
 	}
 
 	public static void main(String[] args) {
