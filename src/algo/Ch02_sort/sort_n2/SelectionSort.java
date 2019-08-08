@@ -18,8 +18,12 @@ public class SelectionSort {
 			//假定当前元素是本次选取的最小值
 			int minIndex = i;
 			for (int j = i+1; j < n; j++) {
-				//索引i和索引j处的元素比较，取较小的那个
-				if(arr[i] > arr[j])  {
+				//*********************************
+				// 索引i和索引j处的元素比较，取较小的那个
+				// bug fixed
+				// 索引minIndex和索引j处的元素比较
+				//*********************************
+				if(arr[minIndex] > arr[j])  {
 					minIndex = j;
 				}
 			}
@@ -33,7 +37,7 @@ public class SelectionSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = {5,4,3,2,1};
+		int[] arr = {5, 2, 3, 4, 8};
 		new SelectionSort().sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
