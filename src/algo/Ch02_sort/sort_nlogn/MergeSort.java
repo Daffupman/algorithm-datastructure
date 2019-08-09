@@ -89,7 +89,7 @@ public class MergeSort {
 			int e = arr[i];
 			//j的结果是待插入元素应该放入到前面序列的位置
 			int j = i;
-			for ( ; j > 0 && e < arr[j-1]; j--) {
+			for ( ; j > l && e < arr[j-1]; j--) {
 				//反向去寻找待插入的索引位置
 				arr[j] = arr[j-1];
 			}
@@ -98,7 +98,7 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = {5,7,3,9,2};
+		int[] arr = {5, 2, 3, 4, 8, 14, 1, 6, 13, 10, 7, 9, 11, 12, 16, 15,19,18};
 		sort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
