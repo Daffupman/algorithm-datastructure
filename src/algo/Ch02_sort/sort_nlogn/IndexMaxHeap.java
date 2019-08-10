@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class IndexMaxHeap<Item extends Comparable> {
 
-	private Item[] data;      //最大索引堆中的数据，只管添加元素
+	private Item[] data;      //最大索引堆中的数据，只管添加元素，数组中的元素位置不改变
 	private int[] indexes;    //最大索引堆中的索引，每个元素对应着data数组中的一个元素（在元素添加的时候就已经绑定好了），需要交换data中的元素位置时，不直接操作data数组而是交换indexes中的元素
 	private int count;        //数组中的元素个数，也是第count个元素存储在data数组索引count处
 	private int capacity;     //数组容量
