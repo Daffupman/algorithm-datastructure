@@ -54,7 +54,7 @@ public class MaxHeap<E extends Comparable<E>> {
 
 	// 上浮
 	private void siftUp(int i) {
-		if (i > 0 && data.get(parent(i)).compareTo(data.get(i)) < 0) {
+		while(i > 0 && data.get(parent(i)).compareTo(data.get(i)) < 0) {
 			//index位置上的元素大于其父节点上的值，并index不为根index
 			data.swap(i, parent(i));
 			i = parent(i);
