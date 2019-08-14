@@ -13,6 +13,8 @@ public class Example03_id209 {
 		int sum = 0;        //记录当前滑动窗口内的元素总和
 		int res = nums.length+1;    //记录当前寻找到的最小连续子数组的长度
 
+		// 只要当前滑动窗口内的元素之和小于s，滑动窗口左扩张，
+		// 反之，右缩减
 		while(l < nums.length) {
 			if( r+1 < nums.length && sum < s) {
 				sum += nums[++r];
@@ -21,9 +23,11 @@ public class Example03_id209 {
 			}
 
 			if(sum >= s) {
-				res = res <= r-l+1 ? res : r-l+1;
+				// 检查
+				res = Math.min(res, r-l+1);
 			}
 		}
+		// 如果res值依然是初始值，那么无解
 		if(res == nums.length+1) {
 			return 0;
 		}
