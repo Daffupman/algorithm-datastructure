@@ -33,6 +33,7 @@ public class Example05_id447 {
 		return res;
 	}
 
+	// a^2 + b^ = c^2
 	private int dis(int[] pa, int pb[]){
 		return (pa[0] - pb[0]) * (pa[0] - pb[0]) +
 				(pa[1] - pb[1]) * (pa[1] - pb[1]);
