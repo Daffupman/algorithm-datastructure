@@ -16,7 +16,7 @@ public class Example03_id1 {
 	public int[] twoSum1(int[] nums, int target) {
 
 		for (int i = 0; i < nums.length; i++) {
-			for (int j = 0; j < nums.length; j++) {
+			for (int j = i+1; j < nums.length; j++) {
 				if(target - nums[i] == nums[j]) {
 					return new int[]{i,j};
 				}
@@ -31,18 +31,23 @@ public class Example03_id1 {
 		//record存储着nums数组中的各个元素和其索引的键值对
 		Map<Integer, Integer> record = new HashMap<>();
 		for (int i = 0; i < nums.length; i++) {
+			// 计算互补元素
 			int complement = target - nums[i];
 			if(record.containsKey(complement)) {
+				// 如果map中有互补的元素，则返回两者的索引
 				return new int[]{i, record.get(complement)};
 			}
-			record.put(i, nums[i]);
+			// map中没有互补的元素，放入map中
+			record.put(nums[i], i);
 		}
 		throw new IllegalArgumentException("No two sum solution");
 	}
 
+	//todo 对撞指针
+
 	public static void main(String[] args) {
-		int[] nums = {5,6,100,4, 200,7,8,9, 1, 3, 2};
-		int target = 4;
+		int[] nums = {3,2,4};
+		int target = 6;
 		Example03_id1 test = new Example03_id1();
 //		int[] res = test.twoSum1(nums, target);
 		int[] res = test.twoSum2(nums, target);
