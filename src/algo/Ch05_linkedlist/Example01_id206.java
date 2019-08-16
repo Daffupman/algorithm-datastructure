@@ -18,10 +18,14 @@ public class Example01_id206 {
 		ListNode prev = null;
 		ListNode curr = head;
 		while(curr != null) {
+			// 为curr的next指针变换后，指明下一个节点
 			ListNode next = curr.next;
 
+			// curr的next指针变换
 			curr.next = prev;
+			// prev前移
 			prev = curr;
+			// curr移动到之前标记好的下一节点
 			curr = next;
 		}
 
