@@ -20,9 +20,11 @@ public class Example03_id24 {
 		dummyHead.next = head;
 
 		ListNode p = dummyHead;
+		// while循环条件：确保有成对的节点
 		while( p.next != null && p.next.next != null) {
 			ListNode node1 = p.next;
 			ListNode node2 = node1.next;
+			// 留好后路
 			ListNode next = node2.next;
 
 			//交换node1和node2
@@ -30,14 +32,18 @@ public class Example03_id24 {
 			node1.next = next;
 			p.next = node2;
 
-			//p指向下一对需要交换的节点之前的位置
+			// p指向下一对需要交换的节点【之前】的位置
+            // 此时的node1已经和node2交换好位置了
 			p = node1;
 		}
 
-		ListNode retNode = dummyHead.next;
-		dummyHead.next = null;
+//		ListNode retNode = dummyHead.next;
+//		dummyHead.next = null;
+//
+//		return retNode;
 
-		return retNode;
+        // 由于Java的垃圾回收机制，可以不用手动销毁对象
+        return dummyHead.next;
 	}
 
 }
