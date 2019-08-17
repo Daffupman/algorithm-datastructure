@@ -15,9 +15,11 @@ public class Example05_id19 {
 
 	//指针对撞
 	public ListNode removeNthFromEnd(ListNode head, int n) {
+		// 设置虚拟头结点
 		ListNode dummyHead = new ListNode( -1 );
 		dummyHead.next = head;
 
+		// 指针p和q相隔固定的距离：n+1
 		ListNode p = dummyHead;
 		ListNode q = dummyHead;
 		for (int i = 0; i < n + 1; i++) {
@@ -25,19 +27,16 @@ public class Example05_id19 {
 			q = q.next;
 		}
 
-		while( p != null ) {
+		while( q != null ) {
+			// 把q移动到末尾的null处
 			p = p.next;
 			q = q.next;
 		}
 
-		ListNode delNode = p.next;
-		p.next = delNode.next;
-		delNode.next = null;
+		// 删除节点
+		p.next = p.next.next;
 
-		ListNode retNode = dummyHead.next;
-		dummyHead = null;
-
-		return retNode;
+		return dummyHead.next;
 
 	}
 
