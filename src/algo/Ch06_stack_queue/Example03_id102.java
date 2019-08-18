@@ -25,8 +25,8 @@ public class Example03_id102 {
 		}
 	}
 
-	//递归
-	public List<List<Integer>> levelOrder(TreeNode root ) {
+	//非递归
+	public List<List<Integer>> levelOrderNR(TreeNode root ) {
 		List<List<Integer>> res = new ArrayList<>();
 		if( root == null)   return res;
 
@@ -40,6 +40,7 @@ public class Example03_id102 {
 			TreeNode node = front.getKey();
 			Integer level = front.getValue();
 			if( level == res.size() ) {
+				// 生成一个List集合，存储这一层的所有数据
 				res.add(new ArrayList<>());
 			}
 			assert level < res.size();
@@ -57,6 +58,30 @@ public class Example03_id102 {
 		}
 
 		return res;
+	}
+
+	// 递归
+	public List<List<Integer>> levelOrder(TreeNode root ) {
+		List<List<Integer>> res = new ArrayList<>();
+		levelOrderHelper(root, 0, res);
+		return res;
+	}
+
+	private void levelOrderHelper(TreeNode node, int level, List<List<Integer>> res) {
+		if(node == null) {
+			return;
+		}
+
+		if(res.size() == level) {
+			ArrayList<Integer> list = new ArrayList<>();
+			list.add(node.val);
+			res.add(list);
+		}else{
+			res.get(level).add(node.val);
+		}
+
+		levelOrderHelper(node.left, level + 1, res);
+		levelOrderHelper(node.right, level + 1, res);
 	}
 
 }
