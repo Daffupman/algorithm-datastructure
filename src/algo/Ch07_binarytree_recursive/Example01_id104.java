@@ -18,6 +18,8 @@ public class Example01_id104 {
 		}
 	}
 
+	// 递归的思路
+	// 将问题拆解成很多个具有相同思路的小问题
 	public int maxDepth(TreeNode root) {
 		if(root == null) {
 			return 0;
