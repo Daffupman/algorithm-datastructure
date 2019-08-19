@@ -1,6 +1,7 @@
 package algo.Ch07_binarytree_recursive;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class Example04_id257 {
 
-	class TreeNode {
+	static class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
@@ -21,24 +22,45 @@ public class Example04_id257 {
 		}
 	}
 
-	public List<String> binaryTreePaths(TreeNode root) {
-		List<String> res = new ArrayList<>();
+	public static List<String> binaryTreePaths(TreeNode root) {
+		ArrayList<String> res = new ArrayList<String>();
 
-		if( root == null) {
+		if(root == null)
+			return res;
+
+		if(root.left == null && root.right == null){
+			res.add(Integer.toString(root.val));
 			return res;
 		}
 
-		if( root.left == null && root.right == null ) {
-			res.add( root.val+"" );
+		List<String> leftPaths = binaryTreePaths(root.left);
+		for(String s: leftPaths){
+			StringBuilder sb = new StringBuilder(Integer.toString(root.val));
+			sb.append("->");
+			sb.append(s);
+			res.add(sb.toString());
 		}
 
-		List<String> leftRes = binaryTreePaths( root.left );
-		res.addAll(leftRes);
-
-		List<String> rightRes = binaryTreePaths( root.right );
-		res.addAll(rightRes);
+		List<String> rightPaths = binaryTreePaths(root.right);
+		for(String s: rightPaths) {
+			StringBuilder sb = new StringBuilder(Integer.toString(root.val));
+			sb.append("->");
+			sb.append(s);
+			res.add(sb.toString());
+		}
 
 		return res;
+	}
+
+	public static void main(String[] args) {
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		TreeNode ll = root.left;
+		ll.right = new TreeNode(5);
+
+		List<String> list = binaryTreePaths(root);
+		list.forEach(System.out::println);
 	}
 
 }
