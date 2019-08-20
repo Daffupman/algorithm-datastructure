@@ -19,7 +19,7 @@
           contains(e):O(n)  
           find(e):O(n)
     - 其他：
-        > resize(capa city):O(n)
+        > resize(capacity):O(n)
         
 4. 均摊复杂度  
     addLast容易触发扩容操作，但并不代表着复杂度的快速增加。当数组的容量满了之后才会触发扩容，平均下来，addLast的操作次数是2。因此容易得知addLast的均摊复杂度为O(2)=O(1)，是一个常数倍的复杂度。
