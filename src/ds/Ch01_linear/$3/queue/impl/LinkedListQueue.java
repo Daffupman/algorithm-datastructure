@@ -29,11 +29,11 @@ public class LinkedListQueue<E> implements Queue<E> {
 		}
 	}
 	
-	private Node head,tail;		//头尾指针
+	private Node head, rear;		//头尾指针
 	private int size;				//队列中的元素
 	
 	public LinkedListQueue() {
-		head = tail =null;
+		head = rear =null;
 		size = 0;
 	}
 	
@@ -50,13 +50,13 @@ public class LinkedListQueue<E> implements Queue<E> {
 	//从队尾添加元素
 	@Override
 	public void enqueue(E e) {
-		if(tail == null) {
+		if(rear == null) {
 			//队空
-			tail = new Node(e);
-			head = tail;
+			rear = new Node(e);
+			head = rear;
 		} else {
-			tail.next = new Node(e);
-			tail = tail.next;
+			rear.next = new Node(e);
+			rear = rear.next;
 		}
 		size ++;
 	}
@@ -69,7 +69,7 @@ public class LinkedListQueue<E> implements Queue<E> {
 		}
 		Node retNode = head;
 		head = head.next;
-		if(head == null)	tail = null;
+		if(head == null)	rear = null;
 		size --;
 		
 		return retNode.e;
