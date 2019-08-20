@@ -118,7 +118,11 @@ public class LinkedList<E> {
 			}
 			prev = prev.next;
 		}
-		//如果上面的while循环中没有找到e，那么此时的prev指向链表最后一个节点
+
+		// 如果上面的while循环中没有找到e，那么此时的prev指向链表最后一个节点
+		// 并且最后一个元素e也是待删除的元素，所以，下面的if语句也不会执行
+
+		// 找到待删元素
 		if(prev.next != null) {
 			//此时链表中必定有相同的节点，进行删除操作
 			Node delNode = prev.next;

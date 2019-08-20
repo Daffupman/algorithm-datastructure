@@ -1,6 +1,6 @@
 栈（Queue）
 ---
-1. 先进先出(FIFO),关注(队首front)
+1. 先进先出(FIFO),关注(队首front).在rear端插入元素，在front端删除元素。
 2. 队列的实现,使用数组底层实现
     - void  enqueue(e)  :均摊O(1)  
     - E dequeue()       :O(n)由于使用了数组的removeFirst()  
