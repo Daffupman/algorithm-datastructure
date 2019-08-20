@@ -141,15 +141,6 @@ public class LinkedList<E> {
 		curr.e = e;
 	}
 	
-	public boolean contains(E e) {
-		Node curr = dummyHead.next;
-		while(curr != null) {
-			if(curr.e.equals(e))	return true;
-			curr = curr.next;
-		}
-		return false;
-	}
-	
 	//-------查--------
 	public E get(int index) {
 		if(index < 0 || index >= size) {
@@ -169,6 +160,15 @@ public class LinkedList<E> {
 	
 	public E getLast() {
 		return get(size-1);
+	}
+
+	public boolean contains(E e) {
+		Node curr = dummyHead.next;
+		while(curr != null) {
+			if(curr.e.equals(e))	return true;
+			curr = curr.next;
+		}
+		return false;
 	}
 
 	@Override
