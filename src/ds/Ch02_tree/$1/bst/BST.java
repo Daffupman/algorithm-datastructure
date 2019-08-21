@@ -44,7 +44,7 @@ public class BST<E extends Comparable<E>> {
 	}
 	
 	//--------增--------
-	////添加不重复的元素e
+	//添加不重复的元素e
 	public void add(E e) {
 		root = add(root, e);
 	}
@@ -52,14 +52,19 @@ public class BST<E extends Comparable<E>> {
 	//向以node为根的二分搜索树插入元素e，递归算法
 	private Node add(Node node, E e) {
 		if(node == null) {
+			// 找到目标位置
 			size ++;
+			// 生成新节点，并返回回去
 			return new Node(e);
 		}
 		if(e.compareTo(node.e) < 0) {
+			// 目标元素比当前节点值小，去往左子树
 			node.left = add(node.left, e);
 		} else if(e.compareTo(node.e) > 0) {
+			// 目标元素比当前节点值大，去往右子树
 			node.right = add(node.right, e);
 		}
+		// 返回以该node为根的树，该树的左右子树已更新
 		return node;
 	}
 	
@@ -74,37 +79,54 @@ public class BST<E extends Comparable<E>> {
 	
 	private Node remove(Node node, E e) {
 		if(node == null) {
+			// 未找到目标元素
 			return null;
 		}
 		if(e.compareTo(node.e) < 0) {
+			// 目标元素比当前节点值小，去往左子树
 			node.left = remove(node.left, e);
 			return node;
 		} else if(e.compareTo(node.e) > 0) {
+			// 目标元素比当前节点值大，去往右子树
 			node.right = remove(node.right, e);
 			return node;
 		} else {
+			// 找到目标元素
 			if(node.right == null) {
+				// 目标元素只有左子树
+				// 保存右子树（也可能为null），并返回上去
 				Node leftNode = node.left;
 				node.left = null;
 				size --;
 				return leftNode;
 			} else if(node.left == null) {
+				// 目标元素只有右子树
+				// 保存右子树（也可能为null），并返回上去
 				Node rightNode = node.right;
 				node.right = null;
 				size --;
 				return rightNode;
 			} else {
+				// 目标元素的左右子树均存在
+				// 获取以当前node为根的树中的最小值节点,记为继承节点：successor
 				Node successor = minimum(node.right);
+				// successor的右子树为移除自己（即最小值节点）后的树
 				successor.right = removeMin(node.right);
+				// successor的左子树为原本节点的左子树
 				successor.left = node.left;
+				// 将目标节点与树脱离
 				node.left = node.right = null;
+				// 返回继承节点
 				return successor;
 			}
 		}
 	}
-	
+
+	// 移除以node为根的树中的最小值节点
 	private Node removeMin(Node node) {
 		if(node.left == null) {
+			// 当前节点为最小值节点
+			// 保存其右子树并返回上去
 			Node rightNode = node.right;
 			node.right = null;
 			size --;
