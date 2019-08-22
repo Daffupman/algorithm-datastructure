@@ -67,6 +67,39 @@ public class BST<E extends Comparable<E>> {
 		// 返回以该node为根的树，该树的左右子树已更新
 		return node;
 	}
+
+	public void addNR(E e) {
+		if(root == null) {
+			// 空树的情况
+			root = new Node(e);
+			size ++;
+			return;
+		}
+
+		// 设立双指针，prev紧跟在curr后面
+		Node prev = root;
+		Node curr = root;
+
+		while(curr != null) {
+			prev = curr;
+			// curr指向null才停止
+			if(e.compareTo(curr.e) < 0) {
+				curr = curr.left;
+			} else if(e.compareTo(curr.e) > 0) {
+				curr = curr.right;
+			} else {
+				// BST中已存在该元素
+				return;
+			}
+		}
+
+		// 判断插入的位置
+		if(e.compareTo(prev.e) < 0) {
+			prev.left = new Node(e);
+		} else {
+			prev.right = new Node(e);
+		}
+	}
 	
 	//--------删--------
 	public void remove(E e) {
@@ -301,7 +334,7 @@ public class BST<E extends Comparable<E>> {
 		BST<Integer> bst = new BST<>();
 		bst.add(2);
 		for (int i = 0; i < 5; i++) {
-			bst.add(i);
+			bst.addNR(i);
 		}
 		bst.preOrder();
 		bst.inOrder();
