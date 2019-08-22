@@ -15,7 +15,11 @@ public class BST<E extends Comparable<E>> {
 	private class Node {
 		private E e;
 		private Node left, right;
-		
+
+		public Node() {
+			this(null);
+		}
+
 		public Node(E e) {
 			this.e = e;
 			left = right = null;
@@ -99,6 +103,7 @@ public class BST<E extends Comparable<E>> {
 		} else {
 			prev.right = new Node(e);
 		}
+		size ++;
 	}
 	
 	//--------删--------
@@ -155,6 +160,59 @@ public class BST<E extends Comparable<E>> {
 		}
 	}
 
+	// 删除节点的非递归写法
+	public void removeNR(E e) {
+		if(root == null)		return;
+
+		Node prev = root;
+		Node curr = root;
+
+		// 定位到待删除的节点
+		while(curr != null && !curr.e.equals(e)) {
+			prev = curr;
+			if(e.compareTo(curr.e) < 0) {
+				curr = curr.left;
+			} else if(e.compareTo(curr.e) > 0) {
+				curr = curr.right;
+			} else {
+				return;
+			}
+		}
+
+		// 待删节点的右子树中的最大值作为继承节点
+		Node successor = minimumNR(curr.right);
+
+		if(prev == curr) {
+			// 当删除的节点为根节点时的特殊处理
+			successor.left = curr.left;
+			root = successor;
+			return;
+		}
+
+		// 将继承节点放在合适的地方
+		if(e.compareTo(prev.e) < 0) {
+			prev.left = successor;
+		} else {
+			prev.right = successor;
+		}
+		// 删除继承节点的原本位置的引用
+		removeMinNR(curr.right);
+		// 更新successor节点的左右子树的引用
+		if(successor != null) {
+			if(curr.left != null && !successor.e.equals(curr.left.e)) {
+				// 防止当子节点就是替代节点的时候引起死循环
+				successor.left = curr.left;
+			}
+			if(curr.right != null && !successor.e.equals(curr.right.e)) {
+				// 防止当子节点就是替代节点的时候引起死循环
+				successor.right = curr.right;
+			}
+		}
+		// curr与BST脱离
+		curr.left = null;
+		curr.right = null;
+	}
+
 	// 移除以node为根的树中的最小值节点
 	private Node removeMin(Node node) {
 		if(node.left == null) {
@@ -166,6 +224,23 @@ public class BST<E extends Comparable<E>> {
 			return rightNode;
 		}
 		return removeMin(node.left);
+	}
+
+	private void removeMinNR(Node node) {
+		if(node == null)	return;
+
+		Node prev = node;
+		Node curr = node;
+		while(curr.left != null) {
+			// 一直去往最左侧的节点(叶子节点)
+			prev = curr;
+			curr = curr.left;
+		}
+		// prev节点依然要承接待删除节点的右子树（不管是否是为null）
+		prev.left = curr.right;
+		// 待删除节点与bst脱离，curr.left已经为空
+		curr.right = null;
+		size --;
 	}
 
 	//--------查--------
@@ -181,6 +256,16 @@ public class BST<E extends Comparable<E>> {
 		if(node.left == null)	return node;
 		return minimum(node.left);
 	}
+
+	private Node minimumNR(Node node) {
+		if(node == null)	return null;
+
+		Node curr = node;
+		while(curr.left != null) {
+			curr = curr.left;
+		}
+		return curr;
+	}
 	
 	public E maximum() {
 		if(root == null) {
@@ -193,6 +278,16 @@ public class BST<E extends Comparable<E>> {
 	private Node maximum(Node node) {
 		if(node.right == null)	return node;
 		return minimum(node.right);
+	}
+
+	private Node maximumNR(Node node) {
+		if(node == null)	return null;
+
+		Node curr = node;
+		while(curr.right != null) {
+			curr = curr.right;
+		}
+		return curr;
 	}
 	
 	//返回元素是否在该树里
@@ -328,7 +423,33 @@ public class BST<E extends Comparable<E>> {
 			if(curr.right != null)	queue.add(curr.right);
 		}
 		System.out.println("\n--------------------");
-	} 
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder res = new StringBuilder();
+		generateBSTString(root, 0, res);
+		return res.toString();
+	}
+
+	private void generateBSTString(Node node, int depth, StringBuilder res){
+
+		if(node == null){
+			res.append(generateDepthString(depth) + "null\n");
+			return;
+		}
+
+		res.append(generateDepthString(depth) + node.e + "\n");
+		generateBSTString(node.left, depth + 1, res);
+		generateBSTString(node.right, depth + 1, res);
+	}
+
+	private String generateDepthString(int depth){
+		StringBuilder res = new StringBuilder();
+		for(int i = 0 ; i < depth ; i ++)
+			res.append("--");
+		return res.toString();
+	}
 	
 	public static void main(String[] args) {
 		BST<Integer> bst = new BST<>();
@@ -336,10 +457,12 @@ public class BST<E extends Comparable<E>> {
 		for (int i = 0; i < 5; i++) {
 			bst.add(i);
 		}
-		bst.preOrder();
+//		bst.preOrder();
 		bst.inOrder();
-		bst.postOrder();
-		bst.levelOrder();
+		bst.removeNR(2);
+		bst.inOrder();
+//		bst.postOrder();
+//		bst.levelOrder();
 		
 	}
 }
