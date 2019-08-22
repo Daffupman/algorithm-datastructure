@@ -29,11 +29,11 @@ public class LinkedListQueue<E> implements Queue<E> {
 		}
 	}
 	
-	private Node head, rear;		//头尾指针
+	private Node front, rear;		//头尾指针
 	private int size;				//队列中的元素
 	
 	public LinkedListQueue() {
-		head = rear =null;
+		front = rear =null;
 		size = 0;
 	}
 	
@@ -53,7 +53,7 @@ public class LinkedListQueue<E> implements Queue<E> {
 		if(rear == null) {
 			//队空
 			rear = new Node(e);
-			head = rear;
+			front = rear;
 		} else {
 			rear.next = new Node(e);
 			rear = rear.next;
@@ -67,9 +67,9 @@ public class LinkedListQueue<E> implements Queue<E> {
 		if(isEmpty()) {
 			throw new RuntimeException("Empty Queue!");
 		}
-		Node retNode = head;
-		head = head.next;
-		if(head == null)	rear = null;
+		Node retNode = front;
+		front = front.next;
+		if(front == null)	rear = null;
 		size --;
 		
 		return retNode.e;
@@ -81,14 +81,14 @@ public class LinkedListQueue<E> implements Queue<E> {
 		if(isEmpty()) {
 			throw new RuntimeException("Empty Queue!");
 		}
-		return head.e;
+		return front.e;
 	}
 	
 	@Override
 	public String toString() {
 		if(isEmpty())	return "Empty Queue!";
 		StringBuilder res = new StringBuilder(50);
-		Node curr = head;
+		Node curr = front;
 		res.append("Queue:\t(front)");
 		while(curr != null) {
 			res.append(curr.e);
