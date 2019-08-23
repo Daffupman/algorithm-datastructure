@@ -172,11 +172,15 @@ public class BST<E extends Comparable<E>> {
 			prev = curr;
 			if(e.compareTo(curr.e) < 0) {
 				curr = curr.left;
-			} else if(e.compareTo(curr.e) > 0) {
-				curr = curr.right;
 			} else {
-				return;
+				// e.compareTo(curr.e) > 0
+				curr = curr.right;
 			}
+		}
+
+		if(curr == null) {
+			// bst中不存在元素e
+			return;
 		}
 
 		// 待删节点的右子树中的最大值作为继承节点
@@ -235,6 +239,11 @@ public class BST<E extends Comparable<E>> {
 			// 一直去往最左侧的节点(叶子节点)
 			prev = curr;
 			curr = curr.left;
+		}
+		if(prev == curr) {
+			// 只有一个节点
+			node = null;
+			return;
 		}
 		// prev节点依然要承接待删除节点的右子树（不管是否是为null）
 		prev.left = curr.right;
