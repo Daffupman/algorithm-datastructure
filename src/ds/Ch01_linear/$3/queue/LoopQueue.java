@@ -1,7 +1,5 @@
 package ds.Ch01_linear.$3.queue;
 
-import ds.Ch01_linear.$3.queue.impl.LinkedListQueue;
-
 /**
  * @description 循环队列
  * 				1.生成的数组总是会多申请一个单位的空间，用于队满检查
@@ -65,7 +63,7 @@ public class LoopQueue<E> implements Queue<E> {
 
 	@Override
 	public E dequeue() {
-		if(isEmpty()) {
+		if(front == rear) {
 			throw new IllegalArgumentException("Empty Queue!");
 		}
 
