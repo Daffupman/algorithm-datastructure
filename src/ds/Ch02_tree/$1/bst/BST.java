@@ -315,7 +315,20 @@ public class BST<E extends Comparable<E>> {
 			return true;
 		}
 	}
-	
+
+	// 判断BST树中是否包含元素e，非递归
+    public boolean containsNR(E e) {
+	    Node curr = root;
+	    while(curr != null && !curr.e.equals(e)) {
+	        if(e.compareTo(curr.e) < 0) {
+	            curr = curr.left;
+            } else {
+	            curr = curr.right;
+            }
+        }
+	    return curr != null;
+    }
+
 	//--------遍历--------
 	//深度优先遍历
 	//先根遍历
