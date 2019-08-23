@@ -417,8 +417,11 @@ public class BST<E extends Comparable<E>> {
 	
 	//后根遍历（非递归）
 	public void postOrderNR() {
+		if(root == null)	return;
+
 		Stack<Node> traStack = new Stack<>();
 		Stack<Node> resStack = new Stack<>();
+
 		traStack.push(root);
 		while(!traStack.isEmpty()) {
 			Node curr = traStack.pop();
@@ -434,6 +437,9 @@ public class BST<E extends Comparable<E>> {
 	
 	//广度优先遍历，借助queue
 	public void levelOrder() {
+		if(root == null)
+			return;
+
 		Queue<Node> queue = new LinkedList<>();
 		queue.add(root);
 		System.out.println("-------层序遍历-------");
