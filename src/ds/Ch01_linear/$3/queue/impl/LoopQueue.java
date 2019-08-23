@@ -1,4 +1,6 @@
-package ds.Ch01_linear.$3.queue;
+package ds.Ch01_linear.$3.queue.impl;
+
+import ds.Ch01_linear.$3.queue.Queue;
 
 /**
  * @description 循环队列
