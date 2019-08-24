@@ -215,6 +215,7 @@ public class BST<E extends Comparable<E>> {
 		// curr与BST脱离
 		curr.left = null;
 		curr.right = null;
+		size --;
 	}
 
 	// 移除以node为根的树中的最小值节点
@@ -492,6 +493,6 @@ public class BST<E extends Comparable<E>> {
 		bst.inOrder();
 //		bst.postOrder();
 //		bst.levelOrder();
-		
+		System.out.println("hello");
 	}
 }
