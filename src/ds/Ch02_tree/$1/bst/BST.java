@@ -243,6 +243,7 @@ public class BST<E extends Comparable<E>> {
 		if(prev == curr) {
 			// 只有一个节点
 			node = null;
+			size --;
 			return;
 		}
 		// prev节点依然要承接待删除节点的右子树（不管是否是为null）
