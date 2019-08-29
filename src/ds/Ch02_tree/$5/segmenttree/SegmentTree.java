@@ -8,8 +8,8 @@ package ds.Ch02_tree.$5.segmenttree;
 public class SegmentTree<E> {
 
 	private E[] data;	//存储数据
-	private E[] tree;	//data数据以线段树形式存储
-	private Merger<E> merger;	//融合器
+	private E[] tree;	//data数据以树的形式存储
+	private Merger<E> merger;	//融合器，用于处理区间内的数据
 	
 	public SegmentTree(E[] arr, Merger<E> merger) {
 		this.merger = merger;
@@ -95,13 +95,17 @@ public class SegmentTree<E> {
 			tree[treeIndex] = e;
 			return;
 		}
-		
+
+		// 左孩子节点的索引
 		int leftTreeIndex = leftChild(treeIndex);
+		// 右孩子节点的索引
 		int rightTreeIndex = rightChild(treeIndex);
 		int mid = l + (r-l)/2;
 		if(index >= mid+1) {
+			// 目标索引在右子树
 			set(rightTreeIndex, mid+1, r, index, e);
 		} else {
+			// 目标索引在左子树
 			set(leftTreeIndex, l, mid, index, e);
 		}
 		
