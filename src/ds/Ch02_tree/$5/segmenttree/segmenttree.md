@@ -7,3 +7,9 @@
       创建：O(n)：4n
       更新：O(logn)
       查询：O(logn)
+      
+2. 线段树的图示
+    - data属性和tree属性：在构建完线段树后的状态
+    ![](https://raw.githubusercontent.com/daffupman/markdown-img/master/20190830204111.png)
+    - tree数组的树形模拟
+    ![](https://raw.githubusercontent.com/daffupman/markdown-img/master/20190830204633.png)

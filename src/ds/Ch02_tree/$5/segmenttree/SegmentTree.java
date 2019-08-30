@@ -8,16 +8,25 @@ package ds.Ch02_tree.$5.segmenttree;
 public class SegmentTree<E> {
 
 	private E[] data;	//存储数据
-	private E[] tree;	//data数据以树的形式存储
+	private E[] tree;	//存储data数组的区间结果
 	private Merger<E> merger;	//融合器，用于处理区间内的数据
 	
 	public SegmentTree(E[] arr, Merger<E> merger) {
+
+		// 参数校验
+		if(arr == null || arr.length == 0) {
+			throw new RuntimeException("Empty Array!");
+		}
+		if(merger == null) {
+			throw new RuntimeException("Merger is Null!");
+		}
+
 		this.merger = merger;
 		data = (E[])new Object[arr.length];
 		//对于区间内的arr数组，把线段树看成一个满二叉树
 		//开辟4*length的空间就足以存储线段树的所有节点
 		tree = (E[])new Object[4 * arr.length];
-		
+
 		System.arraycopy(arr, 0, data, 0, arr.length);
 		buildSegmentTree(0, 0, data.length-1);
 	}
@@ -29,7 +38,7 @@ public class SegmentTree<E> {
 	//在treeIndex的位置创建表示区间[l,r]的线段树
 	private void buildSegmentTree(int treeIndex, int l, int r) {
 		if(l == r) {
-			//区间已经不能再划分了
+			//区间已经不能再划分了，在tree数组的树形结构中的表现形式为【叶子节点】
 			tree[treeIndex] = data[l];
 			return;
 		}
@@ -41,7 +50,8 @@ public class SegmentTree<E> {
 		
 		buildSegmentTree(leftTreeIndex, l, mid);
 		buildSegmentTree(rightTreeIndex, mid+1, r);
-		
+
+		// 计算以treeIndex为根的树中的结果，并存储到treeIndex中
 		tree[treeIndex] = merger.merge(tree[leftTreeIndex],tree[rightTreeIndex]);
 	}
 	
@@ -122,9 +132,9 @@ public class SegmentTree<E> {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] arr = {0,1,2,3,4};
+		Integer[] arr = {5,3,-2,6,1,4};
 		SegmentTree<Integer> tree = new SegmentTree<>(arr, (a,b)->a+b);
-		System.out.println(tree.query(0, 4));
+		System.out.println(tree.query(2, 5));
 		tree.set(0, 10);
 		System.out.println(tree.query(0, 4));
 	}
