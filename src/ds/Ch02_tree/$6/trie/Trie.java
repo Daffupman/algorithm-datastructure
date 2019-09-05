@@ -51,7 +51,31 @@ public class Trie {
 			size ++;
 		}
 	}
-	
+
+	// 添加字符串的递归写法
+	public void addRE(String word) {
+		a(word, 0, root);
+	}
+
+	private void a(String word, int index, Node curr) {
+		if(index == word.length()) {
+			if(!curr.isWord) {
+				curr.isWord = true;
+				size ++;
+			}
+			return;
+		}
+
+		char c = word.charAt(index);
+		Node node = curr.next.get(c);
+		if(curr.next.get(c) == null) {
+			curr.next.put(c, new Node());
+		}
+		curr = curr.next.get(c);
+ 		a(word, index + 1, curr);
+	}
+
+
 	//查询单词word是否在Trie中，非递归
 	public boolean contains(String word) {
 		Node curr = root;
@@ -80,9 +104,9 @@ public class Trie {
 	
 	public static void main(String[] args) {
 		Trie trie = new Trie();
-		trie.add("hello");
-		trie.add("word");
-		trie.add("helloworld");
+		trie.addRE("hello");
+		trie.addRE("word");
+		trie.addRE("helloworld");
 		System.out.println(trie.size());
 		System.out.println(trie.contains("hi"));
 		System.out.println(trie.contains("hello"));
