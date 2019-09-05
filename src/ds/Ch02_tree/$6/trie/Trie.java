@@ -10,21 +10,21 @@ import java.util.TreeMap;
 public class Trie {
 
 	private class Node {
-		private boolean isWord;
-		private TreeMap<Character, Node> next;
+		private Boolean isWord;					// 标志遍历到当前节点是否是一个单词
+		private TreeMap<Character, Node> next;	// 当前节点与下一个节点映射表
 		
 		Node() {
 			this(false);
 		}
 		
-		Node(boolean isWord) {
+		Node(Boolean isWord) {
 			this.isWord = isWord;
 			next = new TreeMap<>();
 		}
 	}
 	
 	private Node root;
-	private int size;
+	private int size;	// 记录Trie中存储的单词数
 	
 	public Trie() {
 		root = new Node();
