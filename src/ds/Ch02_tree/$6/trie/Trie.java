@@ -67,12 +67,10 @@ public class Trie {
 		}
 
 		char c = word.charAt(index);
-		Node node = curr.next.get(c);
 		if(curr.next.get(c) == null) {
 			curr.next.put(c, new Node());
 		}
-		curr = curr.next.get(c);
- 		a(word, index + 1, curr);
+ 		a(word, index + 1, curr.next.get(c));
 	}
 
 
@@ -88,6 +86,22 @@ public class Trie {
 		}
 		return curr.isWord;
 	}
+
+	public boolean containsRE(String word) {
+		return c(word, 0, root);
+	}
+
+	// 判断树中是否存在word的递归写法
+	private boolean c(String word, int index, Node curr) {
+		if(index == word.length()) {
+			return curr.isWord;
+		}
+		char c = word.charAt(index);
+		if(curr.next.get(c) == null) {
+			return false;
+		}
+		return c(word, index + 1, curr.next.get(c));
+	}
 	
 	//查询是否在Trie中有单词以prefix为前缀
 	public boolean isPrefix(String prefix) {
@@ -100,6 +114,21 @@ public class Trie {
 			curr = curr.next.get(c);
 		}
 		return true;
+	}
+
+	public boolean isPrefixRE(String prefix) {
+		return p(prefix, 0, root);
+	}
+
+	private boolean p(String prefix, int index, Node curr) {
+		if(index == prefix.length()) {
+			return true;
+		}
+		char c = prefix.charAt(index);
+		if(curr.next.get(c) == null) {
+			return false;
+		}
+		return p(prefix, index + 1, curr.next.get(c));
 	}
 	
 	public static void main(String[] args) {
