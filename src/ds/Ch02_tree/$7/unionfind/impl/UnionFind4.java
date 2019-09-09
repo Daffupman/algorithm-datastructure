@@ -53,15 +53,16 @@ public class UnionFind4 implements UF {
 		
 		//修改p索引处的父节点指向即可
 		parent[p] = qRoot;
-		
+
+		// 比较两树的rank
 		if(rank[pRoot] < rank[qRoot]) {
 			parent[pRoot] = qRoot;
 		} else if(rank[pRoot] > rank[qRoot]){
 			parent[qRoot] = pRoot;
 		} else {
+			// 只有两树的rank相等时，rank才会增加
 			parent[qRoot] = pRoot;
 			rank[pRoot] += 1;
-			
 		}
 	}
 	
