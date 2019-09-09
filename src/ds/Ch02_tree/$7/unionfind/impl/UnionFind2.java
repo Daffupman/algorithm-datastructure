@@ -9,7 +9,8 @@ import ds.Ch02_tree.$7.unionfind.UF;
  */
 public class UnionFind2 implements UF {
 
-	private int[] parent;		//用于存储下标对应的元素所在的集合parent
+	//用于存储下标对应的元素所对应的父节点下标，父节点下标就是一个集合的id
+	private int[] parent;
 
 	public UnionFind2(int capacity) {
 		parent = new int[capacity];
