@@ -53,11 +53,16 @@ public class UnionFind3 implements UF {
 		
 		//修改p索引处的父节点指向即可
 		parent[p] = qRoot;
-		
+
+		// 将两棵树合并时，检查两树的节点大小
 		if(sz[pRoot] < sz[qRoot]) {
+			// 以p为根的树的size小于以q为根的树的size
+			// p树合并进q树
 			parent[pRoot] = qRoot;
+			// 更新q的size
 			sz[qRoot] += sz[pRoot];
 		} else {
+			// 相反的情况
 			parent[qRoot] = pRoot;
 			sz[pRoot] += sz[qRoot];
 		}
