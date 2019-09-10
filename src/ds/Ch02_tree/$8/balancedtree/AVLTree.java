@@ -1,7 +1,6 @@
 package ds.Ch02_tree.$8.balancedtree;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @description AVLTree，一种可以维护自平衡的树
@@ -21,7 +20,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 			this.key = key;
 			this.val = val;
 			left = right = null;
-			height = 1;
+			height = 1;				// 节点初始化的高度为1
 		}
 		
 		@Override
@@ -82,6 +81,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 	
 	//返回以node为根的树的平衡因子
 	private int getBalanceFactor(Node node) {
+		// 【注意】空树的平衡因子为0
 		if(node == null)	return 0;
 		
 		return getHeight(node.left) - getHeight(node.right);
@@ -89,6 +89,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 	
 	//返回node节点的高度值
 	private int getHeight(Node node) {
+		// 【注意】空树的高度为0
 		if(node == null)	return 0;
 		
 		return node.height;
@@ -113,7 +114,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 		x.right = y;
 		y.left = T2;
 		
-		//必须先更新y节点的height
+		//必须先更新y节点（即处于下层的节点）的height
 		y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
 		x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
 		
@@ -152,7 +153,8 @@ public class AVLTree<K extends Comparable<K>, V> {
 	public void add(K key, V val) {
 		root = add(root, key, val);
 	}
-	
+
+	// 先找到待插入的位置，插入后维护平衡
 	private Node add(Node node, K key, V val) {
 		if(node == null) {
 			size ++;
@@ -175,19 +177,48 @@ public class AVLTree<K extends Comparable<K>, V> {
 		
 		//平衡维护
 		if(balanceFactor > 1 && getBalanceFactor(node.left) >=0 ) {
-			//LL
+			/*
+			 * LL:
+			 * 		 	 (x)
+			 *      	 /
+			 *     	   (y)
+			 *    	   /
+			 *   	  z
+			 */
 			return rightRotate(node);
 		} else if(balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
-			//LR
+			/*
+			 * LR:
+			 * 		   [x]
+			 * 		   /
+			 * 		[(y)]
+			 * 		   \
+			 * 		   (z)
+			 */
 			node.left = leftRotate(node.left);
 			return rightRotate(node);
 		} else if(balanceFactor < -1 && getBalanceFactor(node.right) <= 0) {
+			/*
+			 * RR:
+			 * 	   [x]
+			 * 		 \
+			 * 		[(y)]
+			 * 		   \
+			 * 		   (z)
+			 */
 			return leftRotate(node);
 		} else if(balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+			/*
+			 * RL:
+			 * 	   [x]
+			 * 		 \
+			 * 		[(y)]
+			 * 		 /
+			 * 	   (z)
+			 */
 			node.right = rightRotate(node.right);
 			return leftRotate(node);
 		}
-		
 		return node;
 	}
 	
@@ -203,7 +234,7 @@ public class AVLTree<K extends Comparable<K>, V> {
 	private Node remove(Node node, K key) {
 		if(node == null)	return null;
 		
-		//存储要返回回去的节点，在向上返回的时候需要先维护平衡
+		//存储要返回回去的节点，在向上返回的时候需要先【维护平衡】
 		Node retNode = null;
 		if(key.compareTo(node.key) < 0) {
 			node.left = remove(node.left, key);
@@ -214,13 +245,13 @@ public class AVLTree<K extends Comparable<K>, V> {
 		} else {
 			//找到要删除的目标节点
 			if(node.right == null) {
-				//目标节点的没有左子树
+				//目标节点的没有右子树
 				Node leftNode = node.left;
 				node.left = null;
 				size --;
 				retNode = leftNode;
 			} else if(node.left == null) {
-				//目标节点没有右子树
+				//目标节点没有左子树
 				Node rightNode = node.right;
 				node.right = null;
 				size --;
@@ -243,10 +274,9 @@ public class AVLTree<K extends Comparable<K>, V> {
 		
 		//【重要】:否则要报空指针异常
 		if(retNode == null) {
-			//删除节点后，retNode为空
+			//删除节点后，retNode为空将直接返回null
 			return null;
 		}
-		
 		
 		//更新height
 		retNode.height = Math.max(getHeight(retNode.left), getHeight(retNode.right)) + 1;
